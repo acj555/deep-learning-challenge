@@ -10,11 +10,7 @@ Files:
 
 AlphabetSoupCharity.ipynb – Initial preprocessing and baseline model
 
-AlphabetSoupCharity.h5 – Trained baseline model
-
 AlphabetSoupCharity_Optimization.ipynb – Optimized model with three tuning attempts
-
-AlphabetSoupCharity_Optimization.h5 – Final optimized model
 
 Neural_Network_Report.txt – Summary of approach, results, and recommendations
 
