@@ -1,0 +1,59 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\froman\fcharset0 Times-Roman;\f1\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;}
+\margl1440\margr1440\vieww17300\viewh6280\viewkind0
+\deftab720
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f0\fs24 \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 AlphabetSoupCharity Neural Network Report\
+Overview of the Analysis\
+The goal of this project was to develop a binary classification model that predicts whether an organization funded by Alphabet Soup would be successful. Using historical data provided in charity_data.csv, we applied data preprocessing techniques, built and trained an initial neural network model, and then iteratively optimized it to try to improve performance. The final deliverables included a trained model in the starter code file, an optimized model in the AlphabetSoupCharity_Optimization file and this written analysis.\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 Results\
+Data Preprocessing\
+The target variable for the model was 
+\f1\fs26 \strokec2 IS_SUCCESSFUL
+\f0\fs24 \strokec2 , indicating whether the funding outcome was positive (1) or negative (0). All remaining columns were treated as feature variables, excluding those that were either identifiers or offered minimal predictive value. Specifically, I removed 
+\f1\fs26 \strokec2 EIN
+\f0\fs24 \strokec2  and 
+\f1\fs26 \strokec2 NAME
+\f0\fs24 \strokec2  at the outset, and later, during optimization, also dropped 
+\f1\fs26 \strokec2 SPECIAL_CONSIDERATIONS_Y
+\f0\fs24 \strokec2 , 
+\f1\fs26 \strokec2 USE_CASE_Other
+\f0\fs24 \strokec2 , and 
+\f1\fs26 \strokec2 INCOME_AMT_0
+\f0\fs24 \strokec2  to reduce noise in the feature set.\
+To prepare the data for modeling, I converted categorical features using 
+\f1\fs26 \strokec2 pd.get_dummies()
+\f0\fs24 \strokec2 , split the data into training and testing sets using 
+\f1\fs26 \strokec2 train_test_split
+\f0\fs24 \strokec2 , and applied 
+\f1\fs26 \strokec2 StandardScaler
+\f0\fs24 \strokec2  to normalize the features.\
+Initial Model: Compiling, Training, and Evaluating\
+The initial neural network consisted of three layers with 80, 30, and 1 neurons, respectively. I used ReLU activation functions for the hidden layers and a sigmoid activation for the output layer. Early stopping was implemented to prevent overfitting, and binary crossentropy was used as the loss function. The model achieved approximately 57% accuracy on the test data, which served as a baseline for further improvement.\
+Model Optimization\
+I made three distinct optimization attempts, each focused on a different strategy to improve performance.\
+Optimization Attempt 1: Increased Model Complexity\uc0\u8232 In this version, I increased the number of neurons per layer (256 \u8594  128 \u8594  64), added a third hidden layer, introduced a 
+\f1\fs26 \strokec2 tanh
+\f0\fs24 \strokec2  activation in the second layer, and increased the number of training epochs. This version, however, performed worse than the baseline, achieving only about 44% accuracy. It likely suffered from overfitting or poor activation function choice.\
+Optimization Attempt 2: Simplified Input Data\uc0\u8232 Here, I simplified the feature set by removing additional low-signal or redundant columns: 
+\f1\fs26 \strokec2 SPECIAL_CONSIDERATIONS_Y
+\f0\fs24 \strokec2 , 
+\f1\fs26 \strokec2 USE_CASE_Other
+\f0\fs24 \strokec2 , and 
+\f1\fs26 \strokec2 INCOME_AMT_0
+\f0\fs24 \strokec2 . While the architecture remained relatively simple, performance only marginally improved and still fell short of the original model\'92s accuracy.\
+Optimization Attempt 3: Added Dropout Regularization\uc0\u8232 For the final version, I kept the deeper architecture and introduced 20% dropout after each hidden layer to reduce overfitting. I also mixed activation functions, using both 
+\f1\fs26 \strokec2 relu
+\f0\fs24 \strokec2  and 
+\f1\fs26 \strokec2 tanh
+\f0\fs24 \strokec2 . This attempt achieved around 52.9% accuracy \'97 slightly better than Attempt 1, but still lower than the original model.\
+Summary\
+The best-performing model was the initial version, with an accuracy of approximately 57%. Although the optimization attempts didn\'92t surpass this result, they helped me explore how architectural changes, feature pruning, and regularization can affect model performance. Each approach offered useful insights into the trade-offs between model complexity and generalization.\
+\pard\pardeftab720\sa240\partightenfactor0
+\cf0 \
+}
